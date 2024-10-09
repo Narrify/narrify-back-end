@@ -5,7 +5,7 @@ TODO
 from typing import List
 from pydantic import BaseModel
 
-from models.shared import Attribute, Character
+from src.models.shared import Attribute, Character
 
 
 class StorySettings(BaseModel):

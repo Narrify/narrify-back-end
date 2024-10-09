@@ -6,13 +6,13 @@ import uvicorn
 
 from fastapi import FastAPI
 
-from models.dialog import DialogRequest
-from models.story import StoryRequest
+from src.models.dialog import DialogRequest
+from src.models.story import StoryRequest
 
-from prompt.dialog import generate_dialog_prompt
-from prompt.story import generate_story_prompt
+from src.prompt.dialog import generate_dialog_prompt
+from src.prompt.story import generate_story_prompt
 
-from client.llm import make_request
+from src.client.llm import make_request
 
 app = FastAPI()
 

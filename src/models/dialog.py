@@ -5,7 +5,7 @@ TODO
 from typing import List
 from pydantic import BaseModel
 
-from models.shared import Character
+from src.models.shared import Character
 
 
 class DialogSettings(BaseModel):

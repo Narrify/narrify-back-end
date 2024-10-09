@@ -1,4 +1,4 @@
-# tests/api/test_api.py
+# test/api/test_api.py
 import requests
 
 BASE_URL = 'http://localhost:8000'

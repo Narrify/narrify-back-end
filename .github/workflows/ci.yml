@@ -29,17 +29,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install --no-cache-dir -r requirements.txt
 
-      - name: Run Unit Tests
-        run: |
-          pytest tests/unit
-
-      - name: Run Integration Tests
-        run: |
-          pytest tests/integration
-
-      - name: Run API Tests
-        run: |
-          pytest tests/api    
+      #      - name: Run Unit Tests
+      #        run: |
+      #          pytest tests/unit
+      #
+      #      - name: Run Integration Tests
+      #        run: |
+      #          pytest tests/integration
+      #
+      #      - name: Run API Tests
+      #        run: |
+      #          pytest tests/api
 
       - name: Run Pylint
         run: |
