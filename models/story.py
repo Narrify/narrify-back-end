@@ -1,5 +1,5 @@
 """
-/TODO
+TODO
 """
 
 from typing import List
@@ -10,7 +10,7 @@ from models.shared import Attribute, Character
 
 class StorySettings(BaseModel):
     """
-    /TODO
+    TODO
     """
 
     size: str
@@ -19,7 +19,7 @@ class StorySettings(BaseModel):
 
 class StoryRequest(BaseModel):
     """
-    /TODO
+    TODO
     """
 
     title: str

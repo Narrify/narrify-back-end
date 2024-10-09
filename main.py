@@ -1,5 +1,5 @@
 """
-/TODO
+TODO
 """
 
 import uvicorn
@@ -9,19 +9,18 @@ from fastapi import FastAPI
 from models.dialog import DialogRequest
 from models.story import StoryRequest
 
-from prompt.dialogprompt import generateDialogPrompt
-from prompt.storyprompt import generateStoryPrompt
-from llm_client import send_to_llm
+from prompt.dialog import generate_dialog_prompt
+from prompt.story import generate_story_prompt
 
-import json
+from client.llm import make_request
 
 app = FastAPI()
 
 
 @app.get("/")
-async def main():
+async def hello_world():
     """
-    /TODO
+    TODO
 
     :return:
     """
@@ -31,32 +30,35 @@ async def main():
 
 @app.post('/generate/story')
 async def generate_story(request: StoryRequest):
-    
-    request_json = request.dict()
+    """
+    TODO
+    """
 
-    story_prompt = generateStoryPrompt(request_json)
-    
-    response = send_to_llm(story_prompt)
+    json = request.model_dump()
+    prompt = generate_story_prompt(json)
+
+    response = await make_request(prompt)
 
     return {
-        "llm_response": response
+        "response": response
     }
 
 
 @app.post('/generate/dialog')
 async def generate_dialog(request: DialogRequest):
+    """
+    TODO
+    """
 
-    request_json = request.dict()
+    json = request.model_dump()
+    prompt = generate_dialog_prompt(json)
 
-    story_prompt = generateDialogPrompt(request_json)
-
-    response = send_to_llm(story_prompt)
-    print(response)
+    response = await make_request(prompt)
 
     return {
-        "llm_response": response
+        "response": response
     }
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, host="127.0.0.1")
+    uvicorn.run(app, host="0.0.0.0")

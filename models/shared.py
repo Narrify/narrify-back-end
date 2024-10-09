@@ -1,5 +1,5 @@
 """
-/TODO
+TODO
 """
 
 from typing import List
@@ -8,7 +8,7 @@ from pydantic import BaseModel
 
 class Attribute(BaseModel):
     """
-    /TODO
+    TODO
     """
 
     name: str
@@ -17,7 +17,7 @@ class Attribute(BaseModel):
 
 class Character(BaseModel):
     """
-    /TODO
+    TODO
     """
 
     name: str

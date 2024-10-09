@@ -1,5 +1,5 @@
 """
-/TODO
+TODO
 """
 
 from typing import List
@@ -10,7 +10,7 @@ from models.shared import Character
 
 class DialogSettings(BaseModel):
     """
-    /TODO
+    TODO
     """
 
     number_of_scenes: int
@@ -19,7 +19,7 @@ class DialogSettings(BaseModel):
 
 class DialogRequest(BaseModel):
     """
-    /TODO
+    TODO
     """
 
     story: str
