@@ -9,6 +9,12 @@ from fastapi import FastAPI
 from models.dialog import DialogRequest
 from models.story import StoryRequest
 
+from prompt.dialogprompt import generateDialogPrompt
+from prompt.storyprompt import generateStoryPrompt
+from llm_client import send_to_llm
+
+import json
+
 app = FastAPI()
 
 
@@ -25,35 +31,30 @@ async def main():
 
 @app.post('/generate/story')
 async def generate_story(request: StoryRequest):
-    """
-    /TODO
+    
+    request_json = request.dict()
 
-    :param request:
-    :return:
-    """
+    story_prompt = generateStoryPrompt(request_json)
+    
+    response = send_to_llm(story_prompt)
 
     return {
-        "title": request.title,
-        "settings": request.settings,
-        "characters": request.characters,
-        "plots": request.plots,
-        "endings": request.endings
+        "llm_response": response
     }
 
 
 @app.post('/generate/dialog')
 async def generate_dialog(request: DialogRequest):
-    """
-    /TODO
 
-    :param request:
-    :return:
-    """
+    request_json = request.dict()
+
+    story_prompt = generateDialogPrompt(request_json)
+
+    response = send_to_llm(story_prompt)
+    print(response)
 
     return {
-        "story": request.story,
-        "settings": request.settings,
-        "characters": request.characters
+        "llm_response": response
     }
 
 
