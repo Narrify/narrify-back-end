@@ -1,6 +1,12 @@
-name: Pylint
+name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   lint:
@@ -12,7 +18,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.10'
+          python-version: '3.10'  # Replace with your Python version
       
       - name: Install dependencies
         run: |
@@ -21,5 +27,4 @@ jobs:
 
       - name: Run pylint
         run: |
-          pip install --no-cache-dir pylint  # Optional: Use it here as well if pylint is not in requirements.txt
           pylint **/*.py
