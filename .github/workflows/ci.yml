@@ -1,7 +1,4 @@
 on:
-  pull:
-    branches:
-      - master
   push:
     branches:
       - master
