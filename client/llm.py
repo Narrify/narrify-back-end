@@ -2,10 +2,15 @@
 TODO
 """
 
+import os
+from dotenv import load_dotenv
 from openai import OpenAI, OpenAIError
 
-client = OpenAI(api_key="API_KEY")
+load_dotenv()
 
+API_KEY = os.getenv("OPENAI_API_KEY")
+
+client = OpenAI(api_key=API_KEY)
 
 async def make_request(prompt: dict, model: str = "gpt-4o-mini"):
     """
