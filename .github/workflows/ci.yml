@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Python Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Python Setup
         uses: actions/setup-python@v4
@@ -31,4 +31,4 @@ jobs:
 
       - name: Run Pylint
         run: |
-          pylint **/*.py
+          pylint $(git ls-files '*.py')
