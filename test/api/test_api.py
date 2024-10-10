@@ -3,7 +3,7 @@ import requests
 
 # usaremos un mock server de postman
 BASE_URL = os.getenv('BASE_URL')
-
+assert BASE_URL is not None, "La variable de entorno BASE_URL no está definida o está vacía."
 
 def test_get_root():
 
