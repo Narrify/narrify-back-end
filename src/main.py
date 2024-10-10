@@ -20,7 +20,7 @@ app.include_router(generate_router, prefix="/generate")
 @app.get("/", status_code=status.HTTP_200_OK)
 async def hello_world():
     """
-    TODO
+    TODO xd
     """
 
     return "Hello World"
