@@ -1,8 +1,9 @@
 import os
 import requests
 
-#usaremos un mock server de postman
-BASE_URL=os.getenv('BASE_URL')
+# usaremos un mock server de postman
+BASE_URL = os.getenv('BASE_URL')
+
 
 def test_get_root():
 
