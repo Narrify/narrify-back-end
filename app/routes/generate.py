@@ -4,13 +4,13 @@ TODO
 
 from fastapi import APIRouter
 
-from src.models.dialog import DialogRequest
-from src.models.story import StoryRequest
+from app.models.dialog import DialogRequest
+from app.models.story import StoryRequest
 
-from src.prompts.dialog import generate_dialog_prompt
-from src.prompts.story import generate_story_prompt
+from app.prompts.dialog import generate_dialog_prompt
+from app.prompts.story import generate_story_prompt
 
-from src.clients.llm import make_request
+from app.clients.llm import make_request
 
 router = APIRouter()
 
