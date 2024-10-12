@@ -2,8 +2,8 @@
 TODO
 """
 
-from tests.test import client
 from fastapi import status
+from tests.test import client
 
 
 def test_hello_world():
