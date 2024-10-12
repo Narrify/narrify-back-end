@@ -3,7 +3,7 @@ TODO
 """
 
 from fastapi import status
-from tests.test import client
+from tests.tests import client
 
 
 def test_generate_story():
