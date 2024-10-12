@@ -6,7 +6,7 @@ import uvicorn
 
 from fastapi import FastAPI, status, HTTPException
 
-from src.routes.generate import router as generate_router
+from app.routes.generate import router as generate_router
 
 app = FastAPI(
     title="Narrify | Generation API",
