@@ -4,7 +4,7 @@ TODO
 
 import uvicorn
 
-from fastapi import FastAPI, status, HTTPException
+from fastapi import FastAPI, status
 
 from app.routes.generate import router as generate_router
 
