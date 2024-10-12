@@ -9,7 +9,7 @@ from openai import OpenAI, OpenAIError
 
 load_dotenv()
 
-API_KEY = os.getenv("OPENAI_API_KEY") or "API_KEY"
+API_KEY = os.getenv("OPENAI_API_KEY") or "null"
 
 client = OpenAI(api_key=API_KEY)
 
