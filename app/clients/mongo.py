@@ -7,7 +7,7 @@ from pymongo.errors import PyMongoError
 client = MongoClient("mongodb://localhost:27017/")
 
 db = client["db"]
-collection = db["collection"]
+collection = db["record"]
 
 def insert_prompt(prompt: dict, response: dict):
     """
