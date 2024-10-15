@@ -16,6 +16,6 @@ def generate_story_prompt(json):
         char_attrs = ", ".join([f"{x['name']}: {x['value']}" for x in character['attributes']])
         prompt += f"{character['name']} ({character['name'][0]}): {char_attrs}. "
 
-    prompt += "Generate a engaging story. Use character initials. Use plain text. No notes."
+    prompt += "Generate a engaging story. Use character initials. Use plain text. No notes.Return JSON"
 
     return prompt

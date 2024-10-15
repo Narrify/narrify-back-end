@@ -1,7 +1,7 @@
 """
 TODO
 """
-
+import json
 from fastapi import APIRouter
 
 from app.models.dialog import DialogRequest
@@ -21,8 +21,8 @@ async def generate_story(request: StoryRequest):
     TODO
     """
 
-    json = request.model_dump()
-    prompt = generate_story_prompt(json)
+    json_request = request.model_dump()
+    prompt = generate_story_prompt(json_request)
 
     response = await make_request(prompt)
 
@@ -37,8 +37,8 @@ async def generate_dialog(request: DialogRequest):
     TODO
     """
 
-    json = request.model_dump()
-    prompt = generate_dialog_prompt(json)
+    json_request = request.model_dump()
+    prompt = generate_dialog_prompt(json_request)
 
     response = await make_request(prompt)
 
