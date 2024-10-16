@@ -19,10 +19,8 @@ def insert_prompt(prompt: dict, response: dict):
             "response": response
         }
         result = collection.insert_one(record)
-        print("Prompt añadido a la base de datos")
-
         return result
 
     except PyMongoError as e:
         print(f"Ocurrió un error al insertar el documento: {e}")
-
+        return None
