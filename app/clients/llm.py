@@ -1,9 +1,10 @@
 """
 TODO
 """
+import re
 
 import os
-import json
+#import json
 from dotenv import load_dotenv
 from openai import OpenAI, OpenAIError
 
@@ -41,7 +42,11 @@ async def make_request(prompt: dict, model: str = "gpt-4o-mini"):
             temperature=0.7
         )
         response=response.choices[0].message.content
-
+        #print("--"*20)
+        #print(response)
+        # with open("response.txt", "w") as archivo:
+        #     archivo.write(response)
+        response=format_dialog_to_json(response)
 
         return response
     except OpenAIError as error:
@@ -51,36 +56,31 @@ async def make_request(prompt: dict, model: str = "gpt-4o-mini"):
 
 def format_dialog_to_json(dialog_text):
     """
-    Convierte un texto con formato 'Scene X: A: line' en un formato JSON sin agregar 'response' extra.
+    Convierte el texto de formato 'Scene X [Personaje: diálogo]' en formato JSON estructurado.
     """
-    # Reemplazar las comillas escapadas y los saltos de línea
-    dialog_text = dialog_text.replace('\\"', '"').replace("\\n", " ").strip()
-
-    # Separar las escenas usando "Scene X" como separador
-    scenes = dialog_text.split('Scene ')
     scenes_data = []
 
-    for scene in scenes:
-        if scene.strip():  # Asegurarse de que no haya escenas vacías
-            # Dividir en ID de escena y los diálogos
-            scene_parts = scene.strip().split(' ', 1)  # Separa el número de escena del resto
-            if len(scene_parts) > 1:
-                scene_id = scene_parts[0].strip()  # Obtiene el ID de la escena (por ejemplo, 1, 2, 3, etc.)
-                scene_dialog = scene_parts[1]  # Obtiene el diálogo de la escena
+    # Usar una expresión regular para dividir el texto en escenas
+    scene_blocks = re.split(r"Scene (\d+)", dialog_text)
 
-                # Separar los diálogos por las comas, pero asegurarse de no dividir dentro de una línea de diálogo
-                scene_lines = scene_dialog.split("', '")
-                dialog = []
+    # Iterar por las escenas, cada escena tiene su número y el texto de los diálogos
+    for i in range(1, len(scene_blocks), 2):
+        scene_id = int(scene_blocks[i].strip())  # Número de la escena
+        scene_dialogs = scene_blocks[i + 1].strip()  # Diálogos de la escena
 
-                # Procesar cada línea de diálogo
-                for line in scene_lines:
-                    line = line.strip("'").strip()  # Eliminar comillas innecesarias
-                    if ": " in line:
-                        speaker, line_text = line.split(": ", 1)
-                        dialog.append({"speaker": speaker.strip(), "line": line_text.strip()})
+        # Extraer el contenido entre los corchetes y dividir los diálogos por los personajes
+        dialog_content = re.search(r"\[(.*?)\]", scene_dialogs)
+        if dialog_content:
+            # Capturar todos los "Personaje: diálogo", permitiendo capturar comas y otros caracteres en el diálogo
+            dialog_lines = re.findall(r'([A-Z]): (.*?)(?=\s[A-Z]:|$)', dialog_content.group(1))
 
-                # Añadir los datos de la escena al resultado final
-                scenes_data.append({"scene_id": int(scene_id), "dialog": dialog})
+            dialog = []
+            for speaker, line_text in dialog_lines:
+                dialog.append({"speaker": speaker.strip(), "line": line_text.strip()})
+
+            # Añadir la escena y sus diálogos al resultado final
+            scenes_data.append({"scene_id": scene_id, "dialog": dialog})
+        else:
+            print(f"Advertencia: formato inesperado en la escena {scene_id}")
 
     return scenes_data
-
