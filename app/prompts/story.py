@@ -18,5 +18,6 @@ def generate_story_prompt(json):
 
     prompt += "Generate a engaging story. Use character initials. Use plain text." \
               " No notes.Return JSON"
+    print(prompt)
 
     return prompt
