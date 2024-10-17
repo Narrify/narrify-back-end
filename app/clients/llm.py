@@ -42,10 +42,7 @@ async def make_request(prompt: dict, model: str = "gpt-4o-mini"):
             temperature=0.7
         )
         response=response.choices[0].message.content
-        #print("--"*20)
-        #print(response)
-        # with open("response.txt", "w") as archivo:
-        #     archivo.write(response)
+
         response=format_dialog_to_json(response)
 
         return response
