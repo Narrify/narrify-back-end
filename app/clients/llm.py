@@ -68,7 +68,6 @@ def format_dialog_to_json(dialog_text):
         # Extraer el contenido entre los corchetes y dividir los diálogos por los personajes
         dialog_content = re.search(r"\[(.*?)\]", scene_dialogs)
         if dialog_content:
-            # Capturar todos los "Personaje: diálogo", permitiendo capturar comas y otros caracteres en el diálogo
             dialog_lines = re.findall(r'([A-Z]): (.*?)(?=\s[A-Z]:|$)', dialog_content.group(1))
 
             dialog = []

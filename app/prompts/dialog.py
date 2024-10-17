@@ -1,3 +1,7 @@
+"""
+TODO
+"""
+
 def generate_dialog_prompt(json):
     """
     Genera un prompt eficiente para diálogos usando los datos proporcionados en el JSON.
